@@ -1,0 +1,44 @@
+*** Settings ***
+Library		GenieLibrary
+SuiteSetup	SuiteSetupTasks
+SuiteTeardown	SuiteTeardownTasks
+TestSetup	TestSetupTasks
+TestTeardown	TestTeardownTasks
+
+
+*** Variables ***
+${TEST_APP}=	[object Main]_4
+
+
+*** Keywords ***
+SuiteSetupTasks
+	SetGenieExecutionDelay		0
+	SetGenieObjectTimeout		1
+
+SuiteTeardownTasks
+	Log	suiteTearDown
+
+TestSetupTasks
+	OpenGenieSocket
+
+TestTeardownTasks
+	CloseGenieSocket
+
+
+*** Test Cases ***
+Simple Demonstration
+	ConnectToApplication	${TEST_APP}
+	ClickGenieMovieClipObject	FP^root:::SE^prevBtn:::CH^bg::PX^0::PTR^0::IX^3::ITR^0
+	ClickGenieMovieClipObject	FP^root:::SE^prevBtn:::CH^bg::PX^0::PTR^0::IX^3::ITR^0
+	ClickGenieMovieClipObject	FP^root:::SE^prevBtn:::CH^bg::PX^0::PTR^0::IX^3::ITR^0
+	ClickGenieMovieClipObject	FP^root:::SE^prevBtn:::CH^bg::PX^0::PTR^0::IX^3::ITR^0
+
+
+Simple Demonstration 2
+	ConnectToApplication	${TEST_APP}
+	ClickGenieMovieClipObject	FP^root:::SE^prevBtn:::CH^bg::PX^0::PTR^0::IX^3::ITR^0
+	ClickGenieMovieClipObject	FP^root:::SE^prevBtn:::CH^bg::PX^0::PTR^0::IX^3::ITR^0
+	ClickGenieMovieClipObject	FP^root:::SE^prevBtn:::CH^bg::PX^0::PTR^0::IX^3::ITR^0
+	ClickGenieMovieClipObject	FP^root:::SE^prevBtn:::CH^bg::PX^0::PTR^0::IX^3::ITR^0
+
+
