@@ -120,12 +120,10 @@ public class GenieKeywords {
                    + "| ${text}= | ReadGenieComponent | genieID |\n")
     @ArgumentNames({"genieID"})
     public String readGenieComponent(final String genieID) throws Exception {
-        boolean bVisible=false;
         String retVal = "";
         try {
-            (new GenieComponent(genieID,app)).waitFor(this.waitTimeout);
-            bVisible = (new GenieComponent(genieID,app)).isVisible();
-            if (bVisible) { retVal = (new GenieComponent(genieID,app)).getValueOf("text"); }
+            (new GenieComponent(genieID,app)).waitForPropertyValue("visible","true",this.waitTimeout);
+            retVal = (new GenieComponent(genieID,app)).getValueOf("text");
         } catch (Exception e) {
             throw new StepFailed("Error: reading text from GenieComponent " + genieID + " failed!");
         }
