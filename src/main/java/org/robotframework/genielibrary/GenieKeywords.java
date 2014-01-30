@@ -15,6 +15,8 @@ import com.adobe.genie.executor.components.GenieTextInput;
 import com.adobe.genie.genieCom.SWFApp;
 
 import java.awt.Point;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 @RobotKeywords
@@ -100,6 +102,16 @@ public class GenieKeywords {
         } catch (Exception e) {
             throw new StepFailed("Error: Could not connect to application: " + appName);
         }
+    }
+
+    @RobotKeyword("Saves a screenshot of the current Genie application. "
+                   + "The screenshot files are saved in a folder './scrshots' in a date-format MMddHHmmss.png.\n\n"
+                   + "Example:\n"
+                   + "| GetGenieScreenshot |\n")
+    public void getGenieScreenshot() throws Exception {
+        String fileName = new SimpleDateFormat("MMddHHmmss'.png'").format(new Date());
+        g.captureAppImage(app, "./scrshots/"+fileName);
+        System.out.println("*HTML* <img src='./scrshots/"+fileName+"'></img>");
     }
 
     @RobotKeyword("Clicks a GenieComponent object with a given genieID.\n\n"
